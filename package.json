@@ -6,10 +6,10 @@
 	"license": "MIT",
 	"repository": {
 		"type": "git",
-		"url": "https://github.com/Truebase-com/TruthStack"
+		"url": "https://github.com/paul-go/ReflexML"
 	},
 	"bugs": {
-		"url": "https://github.com/Truebase-com/TruthStack/issues"
+		"url": "https://github.com/paul-go/ReflexML/issues"
 	},
 	"scripts": {
 		"build": "makets build",
