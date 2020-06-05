@@ -1,5 +1,5 @@
 
-namespace Reflex.ML
+namespace ReflexML
 {
 	/** */
 	const isNode = (maybeNode: any): maybeNode is HTMLElement | Text =>

@@ -1,5 +1,5 @@
 
-namespace Reflex.ML
+namespace ReflexML
 {
 	export class Library implements Reflex.Core.ILibrary
 	{
@@ -25,7 +25,7 @@ namespace Reflex.ML
 		{
 			const isInput = (e: HTMLElement): e is HTMLInputElement =>
 				e.ELEMENT_NODE === 1 &&
-					["input", "textarea"].includes(e.tagName);
+					["INPUT", "TEXTAREA"].includes(e.tagName.toUpperCase());
 			
 			return {
 				/**
@@ -200,7 +200,23 @@ namespace Reflex.ML
 			if (!("on" + selector in target))
 				return false;
 			
-			target.addEventListener(selector, callback);
+			let options = rest.length > 0 ?
+				rest[0] as boolean | AddEventListenerOptions :
+				undefined;
+			
+			if (kind === Reflex.Core.RecurrentKind.once)
+			{
+				if (options === undefined)
+					options = { once: true };
+				
+				else if (typeof options === "boolean")
+					options = { once: true, capture: options };
+				
+				else
+					options.once = true;
+			}
+			
+			target.addEventListener(selector, callback, options);
 			return true;
 		}
 		

@@ -2,6 +2,9 @@
 /**
  * Global library object.
  */
-const ml = Reflex.Core.createLeafNamespace<Reflex.ML.Namespace, Reflex.ML.Library>(
-	new Reflex.ML.Library(),
+const ml = Reflex.Core.createLeafNamespace<ReflexML.Namespace, ReflexML.Library>(
+	new ReflexML.Library(),
 	true);
+
+//@ts-ignore
+typeof module === "object" && (module.exports = { ReflexML, ml });

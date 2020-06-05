@@ -1,11 +1,12 @@
 
-namespace Reflex.ML
+namespace Cover
 {
-	function coverNesting()
+	/** */
+	export function coverNesting()
 	{
 		let val = false;
 		
-		render(ml.div(
+		return ml.div(
 			ml.h1(ml`Before Everything`),
 			
 			once("dblclick", () =>
@@ -23,14 +24,11 @@ namespace Reflex.ML
 			}),
 			
 			ml.h6(ml`After Everything`)
-		));
-		
-		return [
-			() => true
-		];
+		);
 	}
 	
-	function coverAttributes()
+	/** */
+	export function coverAttributes()
 	{
 		return ml.div(
 			ml`This input should have a maximum length of 5 characters`,
@@ -43,10 +41,8 @@ namespace Reflex.ML
 	}
 	
 	/** */
-	function coverClosures()
+	export function coverClosures()
 	{
-		alert("Hello");
-		
 		return [
 			ml.div(
 				ml`Before`,
@@ -60,7 +56,7 @@ namespace Reflex.ML
 	}
 	
 	/** */
-	function coverComplexClosures()
+	export function coverComplexClosures()
 	{
 		return [
 			ml.section(
@@ -77,7 +73,7 @@ namespace Reflex.ML
 	}
 	
 	/** */
-	function coverManyLevels()
+	export function coverManyLevels()
 	{
 		return ml.div(
 			[[[""]]],
@@ -90,7 +86,7 @@ namespace Reflex.ML
 	}
 	
 	/** */
-	function coverOnce()
+	export function coverOnce()
 	{
 		return ml.div(
 			ml`Click and the text "Clicked" should be inserted. Should only work once.`,
@@ -103,8 +99,9 @@ namespace Reflex.ML
 	}
 	
 	/** */
-	function coverMultipleSelectors()
+	export function coverMultipleSelectors()
 	{
+		debugger;
 		let value = 0;
 		
 		return ml.div(
@@ -123,7 +120,7 @@ namespace Reflex.ML
 	}
 	
 	/** */
-	function coverOnly()
+	export function coverOnly()
 	{
 		return ml.div(
 			ml`Outer`,
@@ -142,7 +139,7 @@ namespace Reflex.ML
 	}
 	
 	/** */
-	function coverStatelessForces()
+	export function coverStatelessForces()
 	{
 		const greet = force<(name: string) => void>();
 		
@@ -162,7 +159,7 @@ namespace Reflex.ML
 	}
 	
 	/** */
-	function coverStatefulForces()
+	export function coverStatefulForces()
 	{
 		const flag = force(false);
 		
@@ -176,7 +173,7 @@ namespace Reflex.ML
 	}
 	
 	/** */
-	function coverCustomEvents()
+	export function coverCustomEvents()
 	{
 		const fx = force<(str: string, num: number) => void>();
 		
@@ -195,16 +192,16 @@ namespace Reflex.ML
 	}
 	
 	/** */
-	function coverInterpolation()
+	export function coverInterpolation()
 	{
 		return ml.div(ml`${ml.span(ml`(span 1)`)} (not span 1) ${ml.span(ml`(span 2)`)} (not span 2)`);
 	}
 	
 	/** */
-	function coverElementChildren()
+	export function coverElementChildren()
 	{
 		const s = ml.div(ml`1`);
-		const a: Atom = s;
+		const a: Reflex.Atom = s;
 		
 		return ml.div(
 			ml`Click to delete from the bottom`,
@@ -222,7 +219,7 @@ namespace Reflex.ML
 	}
 
 	/** */
-	function coverBasicValueStreaming()
+	export function coverBasicValueStreaming()
 	{
 		let isDark = false;
 		
@@ -234,7 +231,7 @@ namespace Reflex.ML
 	}
 	
 	/** */
-	function coverImmediateValueStreaming()
+	export function coverImmediateValueStreaming()
 	{
 		let isDark = false;
 		
@@ -248,7 +245,7 @@ namespace Reflex.ML
 	}
 	
 	/** */
-	function coverImmediateValueStreamingOnForce()
+	export function coverImmediateValueStreamingOnForce()
 	{
 		const randomForClick = force(makeString());
 		const randomForHover = force(makeString());
@@ -271,7 +268,7 @@ namespace Reflex.ML
 	}
 	
 	/** */
-	function coverChangingContentsOnForce()
+	export function coverChangingContentsOnForce()
 	{
 		const value = force(false);
 		
@@ -295,7 +292,7 @@ namespace Reflex.ML
 	}
 	
 	/** */
-	function coverPromises()
+	export function coverPromises()
 	{
 		return ml.div(
 			ml.p(ml`Before`),
@@ -309,7 +306,7 @@ namespace Reflex.ML
 	}
 	
 	/** */
-	function coverTransitions()
+	export function coverTransitions()
 	{
 		let wide = false;
 		
@@ -321,7 +318,7 @@ namespace Reflex.ML
 	}
 	
 	/** */
-	function coverIterators()
+	export function coverIterators()
 	{
 		return ml.div(
 			ml`There should be 3 items below this.`,
@@ -340,7 +337,7 @@ namespace Reflex.ML
 	}
 	
 	/** */
-	function coverAsyncIteratorsSimple()
+	export function coverAsyncIteratorsSimple()
 	{
 		const wait = () => new Promise(r => setTimeout(r));
 		
@@ -361,7 +358,7 @@ namespace Reflex.ML
 	}
 	
 	/** */
-	function coverAsyncIteratorsComplex()
+	export function coverAsyncIteratorsComplex()
 	{
 		const wait = () => new Promise(r => setTimeout(r));
 		
@@ -392,7 +389,7 @@ namespace Reflex.ML
 	}
 	
 	/** */
-	function coverRefreshMultipleForces()
+	export function coverRefreshMultipleForces()
 	{
 		const fx1 = force();
 		const fx2 = force();
@@ -416,7 +413,45 @@ namespace Reflex.ML
 	}
 	
 	/** */
-	function coverArrayForces()
+	export function coverArrayForce()
+	{
+		class Widget { constructor(readonly size: number) { } }
+		const w1 = new Widget(1);
+		const w2 = new Widget(2);
+		const w3 = new Widget(3);
+		const widgetsFo = force([w1, w2, w3]);
+		
+		return ml.div(
+			ml.button(
+				ml`Splice`,
+				on("click", () =>
+				{
+					widgetsFo.splice(1, 0, new Widget(Math.round(Math.random() * 100)));
+				})
+			),
+			ml.button(
+				ml`Shift`,
+				on("click", () =>
+				{
+					widgetsFo.shift();
+				})
+			),
+			ml.button(
+				ml`Pop`,
+				on("click", () =>
+				{
+					widgetsFo.pop();
+				})
+			),
+			on(widgetsFo, widget =>
+			{
+				return ml.div(ml(widget.size.toString()));
+			})
+		);
+	}
+	
+	/** */
+	export function coverArrayForcesComplex()
 	{
 		const list = force([6, 3, 8]);
 		const sortFlip = force(false);
@@ -466,7 +501,7 @@ namespace Reflex.ML
 	}
 	
 	/** */
-	function coverValueBinding()
+	export function coverValueBinding()
 	{
 		const backing = force("Change this text");
 		
@@ -476,6 +511,7 @@ namespace Reflex.ML
 			ml`Clicking the containing div should reset everything.`,
 			ml.br(),
 			ml.br(),
+			
 			on("click", ev =>
 			{
 				if (ev.target instanceof HTMLInputElement)
@@ -483,25 +519,35 @@ namespace Reflex.ML
 				
 				backing.value = makeString();
 			}),
+			
 			ml.br(),
 			ml`The value is: ${backing}`,
 			ml.br(),
-			ml.inputText(ml.bind(backing)),
+			
+			ml.inputText(
+				"textbox-1",
+				ml.bind(backing)
+			),
+			
 			ml.br(),
-			ml.inputText(ml.bind(backing))
+			
+			ml.inputText(
+				"textbox-2",
+				ml.bind(backing)
+			)
 		];
 		
 		return ml.div(...array);
 	}
 	
 	/** */
-	function coverSymbolicAtomTypes()
+	export function coverSymbolicAtomTypes()
 	{
 		class CustomSymbolic
 		{
 			constructor(private readonly content: string) { }
 			
-			[Reflex.atom](e: HTMLElement, children: Reflex.ML.Atom[])
+			[Reflex.atom](e: HTMLElement, children: ReflexML.Atom[])
 			{
 				return ml.div([
 					ml(this.content),
@@ -521,7 +567,7 @@ namespace Reflex.ML
 	}
 	
 	/** */
-	function coverForceReturners()
+	export function coverForceReturners()
 	{
 		const fo = force(0).return((now, was) => now % 2 === 0 ? now : was);
 		const numbers: number[] = [];
@@ -542,7 +588,7 @@ namespace Reflex.ML
 	}
 	
 	/** */
-	function coverForceWatchers()
+	export function coverForceWatchers()
 	{
 		const stringFo = force("");
 		const numFo = force(0).watch((now, was) =>
@@ -564,7 +610,7 @@ namespace Reflex.ML
 	}
 	
 	/** * /
-	function coverMutationWatcher()
+	export function coverMutationWatcher()
 	{
 		const elementVisible = force(false);
 		const contentVisible = force(false);
@@ -654,7 +700,7 @@ namespace Reflex.ML
 	}
 	
 	/** * /
-	function coverHeadElements()
+	export function coverHeadElements()
 	{
 		let styleTag: HTMLStyleElement;
 		
@@ -692,7 +738,7 @@ namespace Reflex.ML
 	}
 	
 	/** * /
-	function coverScrolling()
+	export function coverScrolling()
 	{
 		return ml.div(
 			{

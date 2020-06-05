@@ -1,5 +1,5 @@
 
-declare namespace Reflex.ML
+declare namespace ReflexML
 {
 	export type Branch = HTMLElement;
 	export type Leaf = Text;
@@ -12,7 +12,7 @@ declare namespace Reflex.ML
 	 */
 	export type SymbolicAtom = Reflex.SymbolicAtom<Branch, Leaf, string>;
 	
-	export interface Namespace extends Core.ILeafNamespace<Text>
+	export interface Namespace extends Reflex.Core.ILeafNamespace<Text>
 	{
 		//# Static Members
 		

@@ -14,5 +14,9 @@
 	"scripts": {
 		"build": "makets build",
 		"bundle": "makets bundle"
+	},
+	"devDependencies": {
+		"electron": "^9.0.0",
+		"moduless": "^2.1.4"
 	}
 }

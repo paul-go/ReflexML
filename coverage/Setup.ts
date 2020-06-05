@@ -1,5 +1,5 @@
 
-namespace Reflex.ML
+namespace Cover
 {
 	const cssText = `
 		HTML *
@@ -69,9 +69,7 @@ namespace Reflex.ML
 		{
 			pointer-events: none;
 		}`;
-	
-	const style = document.createElement("style");
-	style.type = "text/css";
-	style.textContent = cssText;
-	document.head.append(style);
 }
+
+//@ts-ignore
+typeof module === "object" && (module.exports = { Cover });

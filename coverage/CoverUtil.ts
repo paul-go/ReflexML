@@ -1,14 +1,6 @@
 
-namespace Reflex.ML
+namespace Cover
 {
-	/**
-	 * 
-	 */
-	export function render(...atoms: HTMLElement[])
-	{
-		document.body.append(...atoms);
-	}
-	
 	/** */
 	export function makeNumber()
 	{
