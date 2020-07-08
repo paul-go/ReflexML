@@ -29,17 +29,11 @@ namespace ReflexML
 			
 			return {
 				
-				/** */
-				new<Params extends any[]>(
-					customElementConstructor: new (...args: Params) => HTMLElement,
-					...args: Params): (...atoms: Atom[]) => HTMLElement
-				{
-					const branch = new customElementConstructor(...args);
-					return Reflex.Core.importBranch(branch) as (...atoms: Atom[]) => HTMLElement;
-				},
-				
-				/** */
-				import(element: HTMLElement)
+				/**
+				 * Imports an existing HTMLElement into Reflex, 
+				 * and applies the specified atoms to it.
+				 */
+				of(element: HTMLElement)
 				{
 					return Reflex.Core.importBranch(element);
 				},

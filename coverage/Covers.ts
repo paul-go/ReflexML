@@ -800,11 +800,17 @@ namespace Cover
 			constructor(n: number)
 			{
 				super();
+				
+				ml.of(this)(
+					"added-class-name"
+				);
 			}
 		}
 		customElements.define("custom-branch", CustomBranch);
 		
-		const custom = ml.new(CustomBranch, 0)(
+		const custom = new CustomBranch(0);
+		
+		ml.of(custom)(
 			"class-name"
 		);
 		
@@ -814,9 +820,9 @@ namespace Cover
 	}
 	
 	/** */
-	export function coverImportBranch()
+	export function coverIntoBranch()
 	{
-		const body = ml.import(document.body)(
+		const body = ml.of(document.body)(
 			"class-name"
 		);
 		
