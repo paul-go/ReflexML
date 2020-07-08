@@ -28,6 +28,22 @@ namespace ReflexML
 					["INPUT", "TEXTAREA"].includes(e.tagName.toUpperCase());
 			
 			return {
+				
+				/** */
+				new<Params extends any[]>(
+					customElementConstructor: new (...args: Params) => HTMLElement,
+					...args: Params): (...atoms: Atom[]) => HTMLElement
+				{
+					const branch = new customElementConstructor(...args);
+					return Reflex.Core.importBranch(branch) as (...atoms: Atom[]) => HTMLElement;
+				},
+				
+				/** */
+				import(element: HTMLElement)
+				{
+					return Reflex.Core.importBranch(element);
+				},
+				
 				/**
 				 * Causes the connected HTMLElement to be data-bound to the
 				 * specified Force.
@@ -195,9 +211,6 @@ namespace ReflexML
 				return false;
 			
 			if (!(target instanceof Window || target instanceof Node))
-				return false;
-			
-			if (!("on" + selector in target))
 				return false;
 			
 			let options = rest.length > 0 ?

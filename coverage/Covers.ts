@@ -17,7 +17,7 @@ namespace Cover
 					{
 						return (val = !val) ?
 							ml.h3(ml`Flip On Click (true)`) : 
-							ml.h4(ml(`Flip On Click (false)`));
+							ml.h4(ml`Flip On Click (false)`);
 					}),
 					ml.h5(ml`Added On Double Click (Goes After)`)
 				];
@@ -288,6 +288,26 @@ namespace Cover
 			{
 				value.flip();
 			})
+		);
+	}
+	
+	/** */
+	export function coverForceBackedTextNode()
+	{
+		const valueFo = force("A");
+		
+		const text = ml`Hello`;
+		const textNode = ml(valueFo);
+		
+		return ml.div(
+			textNode,
+			ml.button(
+				ml`Flip between A and B`,
+				on("click", () =>
+				{
+					valueFo.value = valueFo.value === "A" ? "B" : "A";
+				})
+			)
 		);
 	}
 	
@@ -771,4 +791,38 @@ namespace Cover
 		);
 	}
 	*/
+	
+	/** */
+	export function coverCustomBranch()
+	{
+		class CustomBranch extends HTMLElement
+		{
+			constructor(n: number)
+			{
+				super();
+			}
+		}
+		customElements.define("custom-branch", CustomBranch);
+		
+		const custom = ml.new(CustomBranch, 0)(
+			"class-name"
+		);
+		
+		return [
+			() => custom.className === "class-name"
+		];
+	}
+	
+	/** */
+	export function coverImportBranch()
+	{
+		const body = ml.import(document.body)(
+			"class-name"
+		);
+		
+		return [
+			() => body === document.body,
+			() => document.body.className === "class-name"
+		];
+	}
 }

@@ -12,8 +12,7 @@
 		"url": "https://github.com/paul-go/ReflexML/issues"
 	},
 	"scripts": {
-		"build": "makets build",
-		"bundle": "makets bundle"
+		
 	},
 	"devDependencies": {
 		"electron": "^9.0.0",

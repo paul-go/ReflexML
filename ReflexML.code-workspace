@@ -35,6 +35,9 @@
 				],
 				"smartStep": true,
 				"sourceMaps": true,
+				"pathMapping": {
+					"/ReflexCore/": "${workspaceFolder}/../ReflexCore/"
+				},
 			}
 		]
 	},

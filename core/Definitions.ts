@@ -1,5 +1,5 @@
 
-declare namespace ReflexML
+declare namespace ReflexML 
 {
 	export type Branch = HTMLElement;
 	export type Leaf = Text;
@@ -24,6 +24,20 @@ declare namespace ReflexML
 		 * HTMLInputElement, otherwise, the .textContent property is used.
 		 */
 		bind<T extends string | number | bigint>(statefulForce: Reflex.StatefulForce<T>): void;
+		
+		/**
+		 * Creates a new HTMLElement from the specified custom HTML element
+		 * constructor function.
+		 */
+		"new"<C extends new (...args: P) => HTMLElement, P extends any[]>(
+			customElementConstructor: C,
+			...args: P): (...atoms: Atom[]) => HTMLElement;
+		
+		/**
+		 * Imports an existing HTMLElement into Reflex, 
+		 * and applies the specified atoms to it.
+		 */
+		import(element: HTMLElement): (...atoms: Atom[]) => HTMLElement;
 		
 		//# HTML Elements
 		
