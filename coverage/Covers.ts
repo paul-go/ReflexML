@@ -797,25 +797,53 @@ namespace Cover
 	{
 		class CustomBranch extends HTMLElement
 		{
-			constructor(n: number)
+			constructor()
 			{
 				super();
-				
-				ml.of(this)(
-					"added-class-name"
-				);
+				ml.of(this)("custom-branch");
 			}
 		}
 		customElements.define("custom-branch", CustomBranch);
 		
-		const custom = new CustomBranch(0);
+		const custom = new CustomBranch();
 		
 		ml.of(custom)(
 			"class-name"
 		);
 		
 		return [
-			() => custom.className === "class-name"
+			() => custom.className === "custom-branch class-name"
+		];
+	}
+	
+	/** */
+	export function coverInheritanceHierarchy()
+	{
+		class BranchBase extends HTMLElement
+		{
+			constructor()
+			{
+				super();
+				ml.of(this)("branch-base");
+			}
+		}
+		customElements.define("branch-base", BranchBase);
+		
+		class BranchChild extends BranchBase
+		{
+			constructor()
+			{
+				super();
+				ml.of(this)("branch-child");
+			}
+		}
+		customElements.define("branch-child", BranchChild);
+		
+		const child = new BranchChild();
+		ml.of(child)("x");
+		
+		return [
+			() => child.className === "branch-base branch-child x"
 		];
 	}
 	
